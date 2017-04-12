@@ -1,10 +1,12 @@
 
 import { execSync } from 'child_process';
 import { resolve } from 'path';
+import { bin } from '../package.json';
 
 describe('test', () => {
 	it('🌚 ', () => {
-		const bin = resolve('bin/node-cli-boilerplate');
-		console.log(execSync(`${bin}`, { encoding: 'utf8' }));
+		const binFile = Object.keys(bin)[0];
+		const command = resolve(`bin/${binFile}`);
+		console.log(execSync(`${command}`, { encoding: 'utf8' }));
 	});
 });
