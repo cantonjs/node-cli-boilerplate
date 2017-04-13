@@ -34,8 +34,16 @@ ask('name', 'name')
 	.then(() => {
 		rl.close();
 
+		const newName = answers.name;
+	
+		if (newName !== oldName) {
+			const oldBinFile = path.resolve(__dirname, `bin/${oldName}`);
+			const newBinFile = path.resolve(__dirname, `bin/${newName}`);
+			fs.renameSync(oldBinFile, newBinFile);
+		}
+
 		const command = answers.bin;
-		answers.bin = { [command]: 'bin/index' };
+		answers.bin = { [command]: `bin/${newName}` };
 
 		console.log(JSON.stringify(answers, null, 2));
 		Object.assign(pkg, answers);
@@ -44,13 +52,6 @@ ask('name', 'name')
 		const newPkg = JSON.stringify(pkg, null, 2);
 		// console.log('\npackage.json:\n', newPkg);
 		fs.writeFileSync(pkgFile, newPkg, 'utf8');
-
-		const newName = answers.name;
-		if (newName !== oldName) {
-			const oldBinFile = path.resolve(__dirname, `bin/${oldName}`);
-			const newBinFile = path.resolve(__dirname, `bin/${newName}`);
-			fs.renameSync(oldBinFile, newBinFile);
-		}
 
 		const isWindows = /^win32/.test(os.platform());
 		const rimrafCommand = isWindows ? 'rd /s /q' : 'rm -rf';
