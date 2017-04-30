@@ -12,8 +12,8 @@
     "lib"
   ],
   "scripts": {
-    "start": "yarn test -- -w --watch-extensions js",
-    "test": "NODE_ENV=development mocha -t 10000 --compilers js:babel-core/register test",
+    "start": "yarn test -- --watchAll",
+    "test": "cross-env NODE_ENV=development jest",
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
     "preversion": "yarn test && yarn build"
@@ -46,7 +46,15 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^19.0.2",
-    "mocha": "^3.2.0",
     "rimraf": "^2.5.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "node_modules",
+      "lib"
+    ]
   }
 }
