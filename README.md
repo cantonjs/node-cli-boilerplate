@@ -3,7 +3,7 @@
 ## Supports
 
 - ES6 (using `babel`)
-- Auto testing (using `mocha`)
+- Auto testing (using `jest`)
 
 ## Start a project
 
