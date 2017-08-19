@@ -24,7 +24,7 @@
     "node": ">=6.0.0"
   },
   "keywords": [],
-  "licenses": "MIT",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.11.4",
