@@ -21,7 +21,7 @@
   "author": "cap32",
   "repository": "cantonjs/node-cli-boilerplate",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=4"
   },
   "keywords": [],
   "license": "MIT",
