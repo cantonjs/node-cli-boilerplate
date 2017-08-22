@@ -13,37 +13,25 @@ const rl = readline.createInterface({
 
 const answers = {};
 
-const ask = (key) => new Promise((resolve) => {
-	let defaults = pkg[key];
-	if (typeof defaults === 'object') {
-		defaults = Object.keys(defaults)[0];
-	}
-	rl.question(`${key} (${defaults}): `, (answer) => {
-		answers[key] = answer || defaults;
+const ask = (key, defaultValue) => new Promise((resolve) => {
+	if (!defaultValue) { defaultValue = pkg[key]; }
+	rl.question(`${key} (${defaultValue}): `, (answer) => {
+		answers[key] = answer || defaultValue;
 		resolve();
 	});
 });
 
-const oldName = pkg.name;
+const defaultName = path.basename(__dirname);
 
-ask('name', 'name')
-	.then(() => ask('description'))
-	.then(() => ask('bin'))
-	.then(() => ask('repository'))
+ask('name', defaultName)
+	.then(() => ask('description', defaultName))
+	.then(() => ask('bin', defaultName))
+	.then(() => ask('repository', `cantonjs/${defaultName}`))
 	.then(() => ask('author'))
 	.then(() => {
 		rl.close();
 
-		const newName = answers.name;
-	
-		if (newName !== oldName) {
-			const oldBinFile = path.resolve(__dirname, `bin/${oldName}`);
-			const newBinFile = path.resolve(__dirname, `bin/${newName}`);
-			fs.renameSync(oldBinFile, newBinFile);
-		}
-
-		const command = answers.bin;
-		answers.bin = { [command]: `bin/${newName}` };
+		answers.bin = { [answers.bin]: 'bin/index' };
 
 		console.log(JSON.stringify(answers, null, 2));
 		Object.assign(pkg, answers);
