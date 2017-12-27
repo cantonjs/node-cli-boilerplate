@@ -14,6 +14,7 @@
   "scripts": {
     "start": "yarn test -- --watchAll",
     "test": "cross-env NODE_ENV=development jest",
+    "format": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
     "preversion": "yarn test && yarn build"
@@ -40,6 +41,7 @@
     "babel-register": "^6.11.6",
     "cross-env": "^4.0.0",
     "eslint": "^3.19.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jest": "^19.0.1",
@@ -47,6 +49,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^19.0.2",
+    "prettier-eslint-cli": "^4.7.0",
     "rimraf": "^2.5.4"
   },
   "jest": {

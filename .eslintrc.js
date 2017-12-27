@@ -2,13 +2,14 @@
 module.exports = {
 	'parser': 'babel-eslint',
 	'extends': [
+		'prettier',
 		'standard',
 		'plugin:jest/recommended',
 		'plugin:promise/recommended',
 		'plugin:import/recommended',
 	],
 	'plugins': [
-		'jest',
+			'jest',
 	],
 	'env': {
 		'browser': true,
@@ -30,14 +31,15 @@ module.exports = {
 
 		'semi': [1, 'always'],
 		'no-tabs': 0,
-		'comma-dangle': 0,
+		'comma-dangle': [1, 'always-multiline'],
 		'indent': [2, 'tab', {
-			'SwitchCase': 1
+				'SwitchCase': 1
 		}],
 		'padded-blocks': 0,
+		'quotes': [1, 'single'],
 		'space-before-function-paren': [1, {
-			'anonymous': 'always',
-			'named': 'never'
+				'anonymous': 'always',
+				'named': 'never'
 		}],
 		'max-len': [1, {
 			'code': 80,
@@ -51,7 +53,7 @@ module.exports = {
 		'operator-linebreak': [1, 'after'],
 		'camelcase': 0,
 		'no-multiple-empty-lines': [1, {
-			'max': 2,
+				'max': 2,
 		}],
 		'no-unused-vars': [1, {
 			'vars': 'all',

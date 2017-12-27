@@ -1,4 +1,3 @@
-
 import { execSync } from 'child_process';
 import { resolve } from 'path';
 import { bin } from '../package.json';
